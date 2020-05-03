@@ -1,46 +1,58 @@
 page-welcome {
-  .splash-bg {
-    position: relative;
-    background: url('../assets/img/splashbg.png') no-repeat transparent;
-    background-size: cover;
-    height: 45%;
-    z-index: 1;
-    background-repeat: repeat-x;
-    animation: animatedBackground 40s linear infinite;
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
   }
-
-  @keyframes animatedBackground {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
+  .app__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40%;
+    width: 100%;
   }
-
-  .splash-info {
-    position: relative;
-    z-index: 2;
-    margin-top: -64px;
+  .button-back {
+    width: 100%;
+    padding: 20px 20px 0px 20px;
+    ion-icon {
+      font-size: 28px;
+      color: color($colors, primary);
+    }
+  }
+  .app__header__title {
+    width: 90%;
     text-align: center;
+    padding: 10px;
+    background-color: color($colors, dark);
+    color: #fff;
   }
-  .splash-logo {
-    margin: auto;
-    background: url('../assets/img/appicon.png') repeat transparent;
-    background-size: 100%;
-    width: 128px;
-    height: 128px;
+  .content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
   }
-  .splash-intro {
-    font-size: 18px;
-    font-weight: bold;
-    max-width: 80%;
-    margin: auto;
-  }
-  button.login {
-    margin-top: 25px;
-    background-color: white;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-    color: #333;
+  .options {
+    width: 100%;
+    padding: 10px;
 
-    &.activated {
-      background-color: rgb(220, 220, 220);
+    button {
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 20px;
+    }
+  }
+  .button-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      width: 50%;
+      padding: 20px;
     }
   }
 }

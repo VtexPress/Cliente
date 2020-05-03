@@ -1,2 +1,51 @@
 page-login {
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  .app__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40%;
+    width: 100%;
+  }
+  .button-back {
+    width: 100%;
+    padding: 20px 20px 0px 20px;
+    ion-icon {
+      font-size: 28px;
+      color: color($colors, primary);
+    }
+  }
+  .app__header__title {
+    width: 90%;
+    text-align: center;
+    padding: 10px;
+    background-color: color($colors, dark);
+    color: #fff;
+  }
+  .form-login {
+    height: 60%;
+    width: 100%;
+  }
+  .button-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      width: 50%;
+      padding: 20px;
+    }
+  }
+  .links {
+    color: color($colors, dark);
+
+    padding-left: 20px;
+    font-size: 16px;
+  }
 }

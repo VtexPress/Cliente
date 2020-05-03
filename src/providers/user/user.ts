@@ -1,84 +1,103 @@
-import 'rxjs/add/operator/toPromise';
+import { Injectable } from "@angular/core";
+import { Api } from "../api/api";
+import { StorageProvider } from "../storage/storage";
 
-import { Injectable } from '@angular/core';
-
-import { Api } from '../api/api';
-
-/**
- * Most apps have the concept of a User. This is a simple provider
- * with stubs for login/signup/etc.
- *
- * This User provider makes calls to our API at the `login` and `signup` endpoints.
- *
- * By default, it expects `login` and `signup` to return a JSON object of the shape:
- *
- * ```json
- * {
- *   status: 'success',
- *   user: {
- *     // User fields your app needs, like "id", "name", "email", etc.
- *   }
- * }Ø
- * ```
- *
- * If the `status` field is not `success`, then an error is detected and returned.
- */
 @Injectable()
 export class User {
-  _user: any;
-
-  constructor(public api: Api) { }
+  constructor(public storage: StorageProvider, public api: Api) {}
 
   /**
-   * Send a POST request to our login endpoint with the data
-   * the user entered on the form.
+   * envia os dados do usuário para criação de uma conta na aplicação
+   * @param account dados da conta
    */
-  login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
+  registerUser(account) {
+    // return new Promise((resolve, reject) => {
+    //   this.api.post("users/register", account).subscribe(
+    //     (result: any) => {
+    //       resolve(result);
+    //     },
+    //     (error) => {
+    //       reject(error);
+    //     }
+    //   );
+    return this.login(account);
+    // });
+  }
 
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
+  /**
+   * faz o login do usuário na aplicação
+   * @param account dados da conta
+   */
+  login(account) {
+    return new Promise((resolve, reject) => {
+      // this.api.post("users/login", account).subscribe(
+      //   (result: any) => {
+      //     resolve(result);
+      //   },
+      //   (error) => {
+      //     reject(error);
+      //   }
+      // );
+      account.email == "vitor@email.com"
+        ? resolve({ token: "jururu" })
+        : reject({ error: "Dados inválidos" });
     });
-
-    return seq;
   }
-
   /**
-   * Send a POST request to our signup endpoint with the data
-   * the user entered on the form.
+   * busca os dados do usuário na api
    */
-  signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
+  getUserData() {
+    return new Promise((resolve, reject) => {
+      this.api.get("users/verify").subscribe(
+        (result: any) => {
+          resolve(result.user);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
+  }
 
-    return seq;
+  updateUser(payload) {
+    return new Promise((resolve, reject) => {
+      this.api.put("users/update", payload).subscribe(
+        (result: any) => {
+          resolve(result);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+  /**
+   * registra os dados do usário em local storage
+   * @param user usuário
+   */
+  saveUserData(user) {
+    if (user.purchases) user.purchases = user.purchases.lenght;
+    this.storage.setUserData(user);
   }
 
   /**
-   * Log the user out, which forgets the session
+   * retorna os dados do usuário em local storage
    */
-  logout() {
-    this._user = null;
+  getLocalUserData() {
+    return this.storage.getUserData();
+  }
+  /**
+   * registra o token do usário em local storage
+   * @param token token a ser salvo
+   */
+  saveUserToken(token: string) {
+    this.storage.setUserToken(token);
   }
 
   /**
-   * Process a login/signup response to store user data
+   * retorna o token do usuário salvo em local storage
    */
-  _loggedIn(resp) {
-    this._user = resp.user;
+  getLocalUserToken() {
+    return this.storage.getUserToken();
   }
 }

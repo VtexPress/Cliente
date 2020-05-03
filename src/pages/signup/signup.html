@@ -1,44 +1,52 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+    <ion-title>Registre-se</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-  <form (submit)="doSignup()">
+  <form [formGroup]="form" (submit)="doSignup()">
     <ion-list>
-
       <ion-item>
-        <ion-label fixed>{{ 'NAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+        <ion-label floating>Nome completo</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
 
-      <!--
-      Want to add a Username? Here you go:
-
       <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+        <ion-label floating>RG</ion-label>
+        <ion-input type="number" formControlName="RG"></ion-input>
       </ion-item>
-      -->
 
       <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        <ion-label floating>Data nascimento</ion-label>
+        <ion-datetime
+          displayFormat="DD/MM/YYYY"
+          min="1950"
+          max="2002"
+          cancelText="Cancelar"
+          doneText="Confirmar"
+          formControlName="age"
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>CNH</ion-label>
+        <ion-input type="number" formControlName="CNH"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Senha</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
 
       <div padding>
-        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+        <button ion-button color="primary" block>
+          Registrar
+        </button>
       </div>
-
     </ion-list>
   </form>
 </ion-content>
