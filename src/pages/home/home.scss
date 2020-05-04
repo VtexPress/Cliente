@@ -1,3 +1,54 @@
 page-home {
+  p {
+    margin: 5px !important;
+  }
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+  }
 
+  .content {
+    // display: flex;
+    width: 100%;
+    // flex-direction: column;
+    // justify-content: center;
+    height: 100%;
+    // justify-items: start;
+  }
+  .delivery {
+    display: flex;
+    // justify-content: space-around;
+    width: 100%;
+    background-color: color($colors, light);
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+  }
+  .delivery__icon {
+    border-radius: 10px;
+    background-color: color($colors, dark);
+    color: #fff;
+    display: flex;
+    font-size: 30px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+  }
+  .delivery__info {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 5px;
+  }
+  .address-establishment {
+    color: color($colors, primary);
+    font-size: 16px;
+    margin-bottom: 3px;
+  }
 }

@@ -6,29 +6,9 @@ page-welcome {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    padding: 20px;
   }
-  .app__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 40%;
-    width: 100%;
-  }
-  .button-back {
-    width: 100%;
-    padding: 20px 20px 0px 20px;
-    ion-icon {
-      font-size: 28px;
-      color: color($colors, primary);
-    }
-  }
-  .app__header__title {
-    width: 90%;
-    text-align: center;
-    padding: 10px;
-    background-color: color($colors, dark);
-    color: #fff;
-  }
+
   .content {
     display: flex;
     width: 100%;
