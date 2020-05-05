@@ -3,7 +3,11 @@
     <header-logo title="Solicitações de transporte"></header-logo>
     <div class="content">
       <ion-list>
-        <div *ngFor="let delivery of deliveries" class="delivery">
+        <div
+          *ngFor="let delivery of deliveries"
+          class="delivery"
+          (click)="openDelivery(delivery)"
+        >
           <div class="delivery__icon">
             <ion-icon name="ios-pin-outline"></ion-icon>
           </div>

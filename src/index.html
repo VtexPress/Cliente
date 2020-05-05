@@ -21,14 +21,15 @@
     <!-- cordova.js required for cordova apps (remove if not needed) -->
     <script src="cordova.js"></script>
 
-    <!-- un-comment this code to enable service worker
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('service worker installed'))
-        .catch(err => console.error('Error', err));
-    }
-  </script>-->
+    <!-- un-comment this code to enable service worker -->
+    <!-- <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(() => console.log("service worker installed"))
+          .catch((err) => console.error("Error", err));
+      }
+    </script> -->
 
     <link href="build/main.css" rel="stylesheet" />
   </head>
@@ -45,5 +46,6 @@
 
     <!-- The main bundle js is generated during the build process -->
     <script src="build/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXy2qLK4r4UGuLKHQGIQnhg1NFs3CaKTM"></script>
   </body>
 </html>

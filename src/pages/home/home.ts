@@ -23,7 +23,7 @@ export class HomePage {
             neigh: "Felícia",
             street: "Rua dos anjos",
             number: 3,
-            zip_code: "565656",
+            zip_code: "45055-702",
             city: "Conkas",
           },
         },
@@ -64,5 +64,9 @@ export class HomePage {
   }
   ionViewDidLoad() {
     this.getDeliveries();
+  }
+
+  openDelivery(delivery) {
+    this.navCtrl.push("DeliveryPage", { delivery });
   }
 }

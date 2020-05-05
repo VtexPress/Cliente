@@ -8,7 +8,7 @@ import { IonicStorageModule } from "@ionic/storage";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
-
+import { LaunchNavigator } from "@ionic-native/launch-navigator/ngx";
 import { User, Api } from "../providers";
 import { MyApp } from "./app.component";
 import { AppNotificationsProvider } from "../providers/app-notifications/app-notifications";
@@ -42,6 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
 
     User,
     Camera,
+    LaunchNavigator,
     SplashScreen,
     StatusBar,
     // Keep this to enable Ionic's runtime error handling during development
