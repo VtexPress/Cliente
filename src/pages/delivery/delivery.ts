@@ -28,9 +28,16 @@ export class DeliveryPage {
 
   async ionViewDidLoad() {
     this.loading = true;
-    await this.initMap();
-    await this.getLocation();
-    await this.calculateAndDisplayRoute();
+    await this.getLocation()
+      .then(async (position: any) => {
+        this.start.lat = position.coords.latitude;
+        this.start.lng = position.coords.longitude;
+        console.log(position, this.start);
+
+        await this.initMap();
+        await this.calculateAndDisplayRoute();
+      })
+      .catch((err = { code: 90 }) => this.errorHandler(err));
     this.loading = false;
   }
 
@@ -40,13 +47,15 @@ export class DeliveryPage {
   async initMap() {
     this.map = new google.maps.Map(this.mapElement.nativeElement, {
       zoom: 7,
-      center: { lat: 41.85, lng: -87.65 },
+      center: this.start,
     });
 
     this.directionsDisplay.setMap(this.map);
   }
 
   calculateAndDisplayRoute() {
+    console.log(this.start);
+
     this.directionsService.route(
       {
         origin: this.start,
@@ -66,23 +75,30 @@ export class DeliveryPage {
   errorHandler(err) {
     if (err.code == 1) {
       alert("Localização indisponível, ative seu GPS!");
+      return;
     } else if (err.code == 2) {
       alert("Error: Position is unavailable!");
+      return;
     }
+    alert("Erro inesperado aconteceu");
   }
   async getLocation() {
-    if (navigator.geolocation) {
-      var options = { timeout: 60000 };
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.start.lat = position.coords.latitude;
-          this.start.lng = position.coords.longitude;
-        },
-        this.errorHandler,
-        options
-      );
-    } else {
-      alert("Este navegador não suporta acesso a localização!");
-    }
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        var options = { timeout: 60000 };
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            resolve(position);
+          },
+          (err) => {
+            reject(err);
+            this.errorHandler(err);
+          },
+          options
+        );
+      } else {
+        alert("Este navegador não suporta acesso a localização!");
+      }
+    });
   }
 }
