@@ -2,7 +2,7 @@
   <div class="app">
     <header-logo title="Solicitações de transporte"></header-logo>
     <div class="content">
-      <ion-list>
+      <ion-list *ngIf="deliveries">
         <div
           *ngFor="let delivery of deliveries"
           class="delivery"

@@ -13,6 +13,7 @@ import { User, Api } from "../providers";
 import { MyApp } from "./app.component";
 import { AppNotificationsProvider } from "../providers/app-notifications/app-notifications";
 import { StorageProvider } from "../providers/storage/storage";
+import { DatabaseProvider } from '../providers/database/database';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -49,6 +50,7 @@ export function createTranslateLoader(http: HttpClient) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AppNotificationsProvider,
     StorageProvider,
+    DatabaseProvider,
   ],
 })
 export class AppModule {}

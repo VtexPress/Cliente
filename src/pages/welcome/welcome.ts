@@ -14,6 +14,8 @@ export class WelcomePage {
   goDeliveryMan() {
     this.navCtrl.push(this.user.getLocalUserToken() ? MainPage : "LoginPage");
   }
-  goRequestDelivery() {}
+  goRequestDelivery() {
+    this.navCtrl.push("RequestDeliveryPage");
+  }
   logout() {}
 }

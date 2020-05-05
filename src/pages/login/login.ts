@@ -6,6 +6,7 @@ import { User } from "../../providers";
 import { MainPage } from "../";
 import { AppNotificationsProvider } from "../../providers/app-notifications/app-notifications";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { DatabaseProvider } from "../../providers/database/database";
 
 @IonicPage()
 @Component({
@@ -23,12 +24,16 @@ export class LoginPage {
 
     public notifications: AppNotificationsProvider,
     public user: User,
+    public database: DatabaseProvider,
     public loadingCtrl: LoadingController,
     formBuilder: FormBuilder
   ) {
     this.form = formBuilder.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required],
+      email: [database.credentials.deliveryMan.email, Validators.required],
+      password: [
+        database.credentials.deliveryMan.password,
+        Validators.required,
+      ],
     });
   }
 

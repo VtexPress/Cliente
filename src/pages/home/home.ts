@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { DatabaseProvider } from "../../providers/database/database";
 
 @IonicPage()
 @Component({
@@ -8,59 +9,14 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 })
 export class HomePage {
   deliveries = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public database: DatabaseProvider
+  ) {}
 
   getDeliveries() {
-    this.deliveries = [
-      {
-        id: 1,
-        establishiment: {
-          name: "Vitão LTDA",
-          address: { neigh: "Felícia", city: "Conkas" },
-        },
-        customer: {
-          address: {
-            neigh: "Felícia",
-            street: "Rua dos anjos",
-            number: 3,
-            zip_code: "45055-702",
-            city: "Conkas",
-          },
-        },
-      },
-      {
-        id: 2,
-        establishiment: {
-          name: "Vitão LTDA",
-          address: { neigh: "Felícia", city: "Conkas" },
-        },
-        customer: {
-          address: {
-            neigh: "Felícia",
-            street: "Rua dos anjos",
-            number: 3,
-            zip_code: "565656",
-            city: "Conkas",
-          },
-        },
-      },
-      {
-        id: 3,
-        establishiment: {
-          name: "Vitão LTDA",
-          address: { neigh: "Felícia", city: "Conkas" },
-        },
-        customer: {
-          address: {
-            neigh: "Felícia",
-            street: "Rua dos anjos",
-            number: 3,
-            zip_code: "565656",
-            city: "Conkas",
-          },
-        },
-      },
-    ];
+    this.deliveries = this.database.deliveries;
   }
   ionViewDidLoad() {
     this.getDeliveries();
